@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tea</title>
+    <link rel="stylesheet" href="css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="css/animate.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/adaptive.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!--попап Закажите чай-->
+    <div class="order-background modal" id="orderBg">
+      <div class="order" id="modal">
+        <button class="close">
+          <img src="images/close.png" alt="close" />
+        </button>
+        <p class="title-text title-text-order">Закажите чай</p>
+        <div class="order-block">
+          <p class="order-block-text">
+            Выберите понравившийся чай, заполните форму и ожидайте нашего звонка
+          </p>
+          <form class="order-form" id="orderForm">
+            <div class="order-form-select">
+              <select
+                class="order-form-input order-form-input-select"
+                name=""
+                id="nameProduct"
+              >
+                <option value="orange">Сладкий апельсин</option>
+                <option value="pear">Чай с облепихой и грушей</option>
+                <option value="raspberry">Ароматная малина</option>
+                <option value="lemon">Лимон и мята</option>
+                <option value="bergamot">Изысканный бергамот</option>
+                <option value="vanilla">Сладкая ваниль</option>
+              </select>
+              <img
+                class="order-form-select-img"
+                src="images/right-arrow.png"
+                alt="arrow"
+              />
+            </div>
+            <input
+              class="order-form-input"
+              type="text"
+              placeholder="Ваше имя"
+              id="name"
+            />
+            <span class="error-name-text" id="errorPopupNameText"
+              >Ошибка! Поле Имя должно быть заполнено</span
+            >
+            <input
+              class="order-form-input"
+              type="phone"
+              id="phone"
+              placeholder="+7 (__) ___-__-__"
+            />
+            <span class="error-name-text" id="errorPopupPhoneText"
+              >Ошибка! Поле Телефон должно быть заполнено</span
+            >
+            <button class="button button-order-form" id="createOrder">
+              <a
+                class="button-text button-text-order open-popup-link"
+                href="#test-popup"
+                >Оформить заказ</a
+              >
+            </button>
+          </form>
+        </div>
+        <img class="order-tea" src="images/tea-order.png" alt="tea" />
+        <svg class="circle" viewBox="0 0 100 100">
+          <path id="circle" d="M 0,50 a 44,44 0 1,1 0,1 z" />
+          <text>
+            <textPath class="circle" xlink:href="#circle">
+              Скидка 5% на ваш первый заказ
+            </textPath>
+          </text>
+        </svg>
+      </div>
+    </div>
+
+    <!--popup Спасибо за заказ-->
+    <div id="order-background-thanks" class="modal">
+      <div class="order-done modal">
+        <!--    <p id="errorMessage"></p>-->
+        <button class="close" id="close">
+          <img src="images/close.png" alt="close" />
+        </button>
+        <p class="title-text title-text-order-done">
+          Спасибо, <span class="subtitle subtitle-dark">что выбрали нас!</span>
+        </p>
+        <p class="order-done-block-text">
+          Наш оператор свяжется с вами в течение 15 минут для подтверждения
+          заказа и уточнения удобного для вас времени доставки
+        </p>
+        <div class="order-done-block">
+          <p class="order-done-text">Вернуться к выбору чая</p>
+          <img class="order-done-img" src="images/arrow.png" alt="arrow" />
+        </div>
+        <div class="order-social">
+          <div class="contacts-text contacts-text-order">
+            Подписывайтесь на нас в соц. сетях:
+          </div>
+          <div class="footer-social-block done-social-block">
+            <a href="#">
+              <img
+                class="footer-social-logo social"
+                src="images/instagram2.png"
+                alt="instagram"
+              />
+            </a>
+            <a href="#">
+              <img
+                class="footer-social-logo social"
+                src="images/vk2.png"
+                alt="vk"
+              />
+            </a>
+            <a href="#">
+              <img class="social" src="images/youtube2.png" alt="youtube" />
+            </a>
+          </div>
+        </div>
+        <img class="tea-bag" src="images/tea-bag2.png" alt="" />
+      </div>
+    </div>
+
+    <!--Попап Связаться с нами-->
+    <div id="order-background-contact">
+      <div class="order-done bid modal">
+        <button class="close">
+          <img src="images/close.png" alt="close" />
+        </button>
+        <form class="order-form">
+          <input
+            class="order-form-input"
+            type="text"
+            placeholder="Имя"
+            id="userName"
+          />
+          <span class="error-name-text" id="errorNameText"
+            >Ошибка! Поле Имя должно быть заполнено</span
+          >
+          <input
+            class="order-form-input"
+            type="userPhone"
+            placeholder="+7 (__) ___-__-__"
+            id="userPhone"
+          />
+          <span class="error-name-text" id="errorPhoneText"
+            >Ошибка! Поле Телефон должно быть заполнено</span
+          >
+          <button class="button button-order-form" id="OrderUserForm">
+            <a
+              class="button-text button-text-order open-popup-link-user"
+              href="#test-popup"
+              >Отправить</a
+            >
+          </button>
+        </form>
+        <img class="order-tea bid-tea" src="images/tea-order.png" alt="tea" />
+      </div>
+    </div>
+
+    <header>
+      <div class="container">
+        <div class="header-img">
+          <div class="header-main">
+            <div class="header-menu">
+              <div class="logo logo-header">
+                <img src="images/logo.png" alt="logo" />
+              </div>
+              <!-- Добавляем бургер-кнопку -->
+              <div class="burger">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="menu">
+                <ul class="menu-list">
+                  <li>
+                    <a class="menu-link" href="#desc">О нас</a>
+                  </li>
+                  <li>
+                    <a class="menu-link" href="#productItems"
+                      >Наш ассортимент</a
+                    >
+                  </li>
+                  <li>
+                    <a class="menu-link" href="#orderItems">Оформить заказ</a>
+                  </li>
+                  <li>
+                    <a class="menu-link" href="#storeСontacts">Контакты</a>
+                  </li>
+                </ul>
+              </div>
+              <button
+                class="button header-button button-link-us"
+                id="headerBtn"
+              >
+                <a href="">Связаться с нами</a>
+              </button>
+            </div>
+          </div>
+
+          <div class="header-desc wow animate__backInRight">
+            <h1 class="header-title">Эксклюзивный листовой чай</h1>
+            <p class="subtitle">с разных уголков планеты</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container-main">
+        <div class="section-desc">
+          <p class="title-text">6 качеств нашего чая,</p>
+          <p class="subtitle subtitle-dark">которые вы оцените</p>
+        </div>
+        <div class="section-goods">
+          <div class="goods-block">
+            <div class="section-goods-block">
+              <img src="images/icon_1.png" alt="icon" />
+              <p class="goods-block-img">
+                Подавляет рост злокачественных опухолей, и существенно снижает
+                риск перерождения клеток в раковые
+              </p>
+            </div>
+            <div class="section-goods-block">
+              <img src="images/icon_2.png" alt="icon" />
+              <p class="goods-block-img">
+                Нормализует деятельность сердца, кровеносных сосудов,
+                пищеварительной системы
+              </p>
+            </div>
+            <div class="section-goods-block">
+              <img src="images/icon_3.png" alt="icon" />
+              <p class="goods-block-img">Эффективно предотвращает кариес</p>
+            </div>
+          </div>
+          <div class="goods-block">
+            <div class="section-goods-block">
+              <img src="images/icon_4.png" alt="icon" />
+              <p class="goods-block-img">Богат полезными микроэлементами</p>
+            </div>
+            <div class="section-goods-block">
+              <img src="images/icon_5.png" alt="icon" />
+              <p class="goods-block-img">
+                Бодрит дух, повышает активность мозга, улучшает память
+              </p>
+            </div>
+            <div class="section-goods-block">
+              <img src="images/icon_6.png" alt="icon" />
+              <p class="goods-block-img">
+                Снимает усталость и стимулирует обмен веществ
+              </p>
+            </div>
+          </div>
+          <img
+            class="section-goods-orange"
+            src="images/orange.png"
+            alt="orange"
+          />
+          <img class="section-goods-leaf" src="images/leaf.png" alt="leaf" />
+          <img class="goods-leaf" src="images/leaf_2.png" alt="leaf" />
+        </div>
+
+        <!--        Карусель с чаем-->
+        <div class="section-promotion" id="productItems">
+          <button class="arrow-left" id="arrowLeft">
+            <img src="images/banner/arrow-left.png" alt="arrow-left" />
+          </button>
+          <button class="arrow-right" id="arrowRight">
+            <img src="images/banner/arrow-right.png" alt="arrow-right" />
+          </button>
+          <div class="block-circle-btn" id="blockCircleBtn"></div>
+          <p class="title-text title-text-promotion">Наш ассортимент</p>
+          <div class="section-promotion-slider" id="caruselProduct"></div>
+        </div>
+        <!--        Карусель с чаем-->
+
+        <div class="section-promotion-offer" id="orderItems">
+          <img src="images/cup.png" alt="cup tea" />
+          <div class="promotion-offer-text">
+            <p class="offer-text">
+              Выберите чай и получите скидку 5% на
+              <span class="offer-text-span">ваш</span> первый заказ
+            </p>
+            <button class="button button-offer" id="openModal">
+              <a href="">Оформить заказ</a>
+            </button>
+          </div>
+          <img
+            class="section-promotion-orange-bg"
+            src="images/orange_bg.png"
+            alt="orange"
+          />
+          <img
+            class="promotion-orange-bg"
+            src="images/orange_bg_2.png"
+            alt="orange"
+          />
+        </div>
+      </div>
+    </main>
+    <aside>
+      <div class="container-aside">
+        <div class="section-text-img">
+          <img class="section-img" src="images/tea.png" alt="tea" />
+          <p class="aside-title">Качественный и свежий чай</p>
+          <p class="aside-text">
+            Мы завариваем и дегустируем чай снова и снова, пока не найдем
+            идеальный вкус, поэтому в нашем каталоге собраны только лучшие сорта
+            с самых известных плантаций мира
+          </p>
+        </div>
+        <div class="section-text-desc">
+          <div class="text-desc-main">
+            <p class="title-text">У нас вы найдете</p>
+            <p class="subtitle subtitle-dark">все необходимое</p>
+          </div>
+          <div class="section-text-desc-block">
+            <p class="aside-title">Эксклюзивные чайные миксы</p>
+            <p class="aside-text">
+              Попробуйте наши миксы, созданные на основе кулинарных тенденций,
+              миксологии и вдохновения
+            </p>
+          </div>
+          <div class="section-text-desc-block">
+            <p class="aside-title">Чайные аксессуары</p>
+            <p class="aside-text aside-text-width">
+              У нас вы найдете всю необходимую посуду для правильного хранения,
+              заваривания и подачи чая
+            </p>
+          </div>
+          <div class="section-text-desc-block">
+            <p class="aside-title">Подарочные наборы</p>
+            <p class="aside-text">
+              Мы соберем в красивую упаковку именной подарочный набор для ваших
+              близких, чтобы они могли по достоинству оценить вашу заботу и все
+              вкусовые качества нашего чая
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-aside-adaptive">
+        <div class="section-text-img">
+          <img class="section-img" src="images/tea.png" alt="tea" />
+          <div class="aside-title-text">
+            <p class="title-text">У нас вы найдете</p>
+            <p class="subtitle subtitle-dark subtitle-dark-adaptive">
+              все необходимое
+            </p>
+          </div>
+        </div>
+        <div class="section-text-desc">
+          <div class="section-text-desc-block">
+            <p class="aside-title">Качественный и свежий чай</p>
+            <p class="aside-text">
+              Мы завариваем и дегустируем чай снова и снова, пока не найдем
+              идеальный вкус, поэтому в нашем каталоге собраны только лучшие
+              сорта с самых известных плантаций мира
+            </p>
+          </div>
+          <div class="section-text-desc-block">
+            <p class="aside-title">Эксклюзивные чайные миксы</p>
+            <p class="aside-text">
+              Попробуйте наши миксы, созданные на основе кулинарных тенденций,
+              миксологии и вдохновения
+            </p>
+          </div>
+          <div class="section-text-desc-block">
+            <p class="aside-title">Чайные аксессуары</p>
+            <p class="aside-text">
+              У нас вы найдете всю необходимую посуду для правильного хранения,
+              заваривания и подачи чая
+            </p>
+          </div>
+          <div class="section-text-desc-block">
+            <p class="aside-title">Подарочные наборы</p>
+            <p class="aside-text">
+              Мы соберем в красивую упаковку именной подарочный набор для ваших
+              близких, чтобы они могли по достоинству оценить вашу заботу и все
+              вкусовые качества нашего чая
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!--карусель с отзывами-->
+    <div class="section">
+      <div class="container-section">
+        <img class="lemon-img" src="images/lemon.png" alt="lemon" />
+        <p class="title-text title-text-section">
+          За нас все скажут наши клиенты
+        </p>
+        <div class="section-promotion section-carusel">
+          <button class="arrow-left" id="arrowLeftReview">
+            <img src="images/banner/arrow-left.png" alt="arrow-left" />
+          </button>
+          <button class="arrow-right" id="arrowRightReview">
+            <img src="images/banner/arrow-right.png" alt="arrow-right" />
+          </button>
+          <div class="block-circle-btn" id="reviewBlockCircleBtn"></div>
+
+          <div class="section-carusel-review" id="reviewCaruselBlock">
+            <!--                <img src="images/review/review1.png" alt="review">-->
+            <!--                <div class="carusel-review-text">-->
+            <!--                    <div class="review-title">Анастасия</div>-->
+            <!--                    <p class="review-title-block">В сегодняшнем отзыве хочу поделиться своими впечатлениями от-->
+            <!--                        чёрного цейлонского чая IMPRA-->
+            <!--                        (мелколистовой 400 г).</p>-->
+            <!--                    <p class="review-title-block">В этом году я ездила в свой родной город и купила там большую-->
+            <!--                        упаковку этого чая. Никогда не-->
+            <!--                        думала, что буду писать на него отзыв, для меня это не просто чай, это частичка детства,-->
+            <!--                        воспоминаний, кухня бабушки, чаинки в чае, которые я в детстве не любила, ассоциации с-->
+            <!--                        чем-то-->
+            <!--                        родным.</p>-->
+            <!--                </div>-->
+          </div>
+
+          <!--                        <div class="section-carusel-review-two">-->
+          <!--                            <img src="images/review/review2.png" alt="review">-->
+          <!--                            <div class="carusel-review-text">-->
+          <!--                                <div class="review-title">Вероника</div>-->
+          <!--                                <p class="review-title-block">Супер подарочные наборы! Ура, нашли отличный вариант поздравить коллег.</p>-->
+          <!--                                <p class="review-title-block">С коллегами по работе постоянно заказываем чаи. Всегда радует стабильное качество и разнообразие классических вариантов. Посуду тоже заказывали и на работу, и домой потом многие — довольны. Приятно было найти такой магазин.</p>-->
+          <!--                            </div>-->
+          <!--                        </div>-->
+
+          <!--                        <div class="section-carusel-review-three">-->
+          <!--                            <img src="images/review/review3.png" alt="review">-->
+          <!--                            <div class="carusel-review-text">-->
+          <!--                                <div class="review-title">Степан</div>-->
+          <!--                                <p class="review-title-block">Большая благодарность за подход такой к делу. Чаи всем понравились и было необычно приятно.</p>-->
+          <!--                                <p class="review-title-block">Великолепные подарки на праздники. Изящно, премиально и качественно. Большая благодарность за подход такой к делу. Чаи всем понравились и было необычно приятно. Отличный чай, брал разные сорта и Халат, и Пуэр, и улуны.</p>-->
+          <!--                            </div>-->
+          <!--                        </div>-->
+
+          <div class="block-circle-btn-review" id="blockCircleButton"></div>
+          <div class="section-promotion-slider" id="caruselReview"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacts" id="storeСontacts">
+      <div class="container-contacts">
+        <div class="contacts-wrapper">
+          <img class="contacts-tea-img" src="images/tea-cup.png" alt="tea" />
+          <div class="contacts-info">
+            <p class="title-text title-text-contacts">Контактная информация</p>
+            <span class="contacts-subtitle">Пункты самовывоза:</span>
+            <div class="contacts-block">
+              <img src="images/location.png" alt="location-img" />
+              <span class="contacts-text contacts-text-address"
+                >г. Владивосток, ул. Луговая, 18</span
+              >
+            </div>
+            <div class="contacts-block">
+              <img src="images/location.png" alt="location-img" />
+              <span class="contacts-text contacts-text-address"
+                >г. Владивосток, ТЦ «Море», 5 этаж</span
+              >
+            </div>
+            <span class="contacts-subtitle">Телефоны:</span>
+            <span class="contacts-text contacts-text-phone"
+              >+7 (914) 332-16-17</span
+            >
+            <span class="contacts-text contacts-text-phone"
+              >+7 (999) 618-11-88</span
+            >
+          </div>
+          <img class="plant-tea-img" src="images/plant_tea.png" alt="tea" />
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container container-footer">
+        <div class="footer-wrapper">
+          <div class="logo logo-footer">
+            <img src="images/logo.png" alt="logo" />
+          </div>
+          <div class="footer-social">
+            <span class="contacts-text">Соц. сети:</span>
+            <div class="footer-social-block">
+              <a href="#">
+                <img
+                  class="footer-social-logo social"
+                  src="images/instagram.png"
+                  alt="instagram"
+                />
+              </a>
+              <a href="#">
+                <img
+                  class="footer-social-logo social"
+                  src="images/vk.png"
+                  alt="vk"
+                />
+              </a>
+              <a href="#">
+                <img class="social" src="images/youtube.png" alt="youtube" />
+              </a>
+            </div>
+          </div>
+          <button class="button footer-button button-link-us" id="footerBtn">
+            Связаться с нами
+          </button>
+          <span class="contacts-text contacts-text-footer"
+            >Все права защищены, 2024</span
+          >
+        </div>
+      </div>
+    </footer>
+
+    <template id="product">
+      <div class="product">
+        <div class="product-desc">
+          <h3 class="product-desc-title"></h3>
+          <div>
+            <div class="product-desc-block">
+              <button class="measurements-btn" id="minus">-</button>
+              <span class="measurements"></span>
+              <button class="measurements-btn" id="plus">+</button>
+            </div>
+            <span class="price"></span>
+            <button class="button button-template">Заказать</button>
+          </div>
+        </div>
+        <img class="product-img" src="" alt="" />
+      </div>
+    </template>
+
+    <!--Шаблон с отзывами-->
+    <template id="review">
+      <div class="section-carusel-review">
+        <img class="review-img" src="" alt="" />
+        <div class="carusel-review-text">
+          <h3 class="review-title"></h3>
+          <p class="review-subtitle-block"></p>
+          <p class="review-text-block"></p>
+        </div>
+      </div>
+    </template>
+    <!--Шаблон с отзывами-->
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.inputmask.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/reviewSlider.js"></script>
+  </body>
+</html>
